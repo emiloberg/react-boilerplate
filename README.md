@@ -1,12 +1,13 @@
 # react-boilerplate
 
 ### What is this?
-Minimal react boilerplate with ES6/JSX support, and:
+Minimal React boilerplate
 
-* [Webpack](https://webpack.github.io/)
-* [webpack-dev-server](https://github.com/webpack/webpack-dev-server)
-* [babel-loader](https://github.com/babel/babel-loader)
-* [react-hot-loader](https://github.com/gaearon/react-hot-loader)
+#### Stage 1 does:
+* ES6 support
+* JSX support
+* Webpack Dev server with hot loading (changes are reflected in your browser as you press save)
+* Linting with ESLint
 
 ### Install
 
