@@ -6,7 +6,7 @@
     "start": "node dev-server.js",
     "lint": "eslint src",
     "test": "mocha --require babel-core/register --recursive \"test/**/*.@(js|jsx)\"",
-    "test:watch": "npm test -- --watch"
+    "test:watch": "npm test -- --watch --watch-extensions js,jsx"
   },
   "repository": {
     "type": "git",
