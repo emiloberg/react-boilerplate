@@ -1,8 +1,8 @@
 import React from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import { addTodo } from 'actionCreators';
 
-let AddTodo = ({ dispatch }) => { //Second argument is the context!
+let AddTodo = ({ dispatch }) => { // Second argument is the context!
 	let input;
 	return (
 		<div>
@@ -17,7 +17,7 @@ let AddTodo = ({ dispatch }) => { //Second argument is the context!
 				Add Todo
 			</button>
 		</div>
-	)
+	);
 };
 // First argument of connect is mapStateToProps. But as we do not need any state for rendering the AddTodo
 // we don't need to subscribe to the store (it would just be wasteful), therefor we can send in 'null', e.g.

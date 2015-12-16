@@ -1,4 +1,4 @@
-import { TOGGLE_TODO } from 'actionTypes'
+import { TOGGLE_TODO } from 'actionTypes';
 
 const toggleTodo = (id) => {
 	return {

@@ -1,4 +1,4 @@
-import { SET_VISIBILITY_FILTER } from 'actionTypes'
+import { SET_VISIBILITY_FILTER } from 'actionTypes';
 
 const setVisibilityFilter = (filter) => {
 	return {

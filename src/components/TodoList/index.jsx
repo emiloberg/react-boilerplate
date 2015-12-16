@@ -1,18 +1,20 @@
 import React from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
 import Todo from 'components/TodoList/components/Todo';
 import { toggleTodo } from 'actionCreators';
-import { SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED } from 'state'
+import { SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED } from 'state';
 
 const getVisibleTodos = (todos, filter) => {
-	switch(filter) {
+	switch (filter) {
 		case SHOW_ALL:
 			return todos;
 		case SHOW_COMPLETED:
 			return todos.filter(curTodo => curTodo.completed);
 		case SHOW_ACTIVE:
 			return todos.filter(curTodo => !curTodo.completed);
+		default:
+			return todos;
 	}
 };
 
@@ -36,7 +38,7 @@ const mapStateToTodoListProps = (state) => {
 const mapDispatchToTodoListProps = (dispatch) => {
 	return {
 		onTodoClick: (id) => {
-			dispatch(toggleTodo(id))
+			dispatch(toggleTodo(id));
 		}
 	};
 };
