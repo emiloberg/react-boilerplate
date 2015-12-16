@@ -24,6 +24,15 @@ module.exports = {
     }]
   },
   resolve: {
-    extensions: ['', '.js', '.json', '.jsx']
+  root: path.resolve(__dirname),
+	  alias: {
+		  components: 'src/components',
+		  actionCreators: 'src/actionCreators',
+		  constants: 'src/constants',
+		  actionTypes: 'src/constants/actionTypes',
+		  state: 'src/constants/state',
+		  reducers: 'src/reducers'
+	  },
+	  extensions: ['', '.js', '.json', '.jsx']
   }  
 };
