@@ -6,7 +6,7 @@ import Link from 'components/FilterLink/components/Link';
 // mapStateToLinkProps gives the components props as second argument
 const mapStateToProps = (state, ownProps) => {
 	return {
-		active: ownProps.filter === state.visibilityFilter
+		active: ownProps.filter === state.visibilityFilter.get('filter')
 	};
 };
 const mapDispatchToProps = (dispatch, ownProps) => {

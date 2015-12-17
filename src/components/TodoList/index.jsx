@@ -10,9 +10,9 @@ const getVisibleTodos = (todos, filter) => {
 		case SHOW_ALL:
 			return todos;
 		case SHOW_COMPLETED:
-			return todos.filter(curTodo => curTodo.completed);
+			return todos.filter(curTodo => curTodo.get('completed'));
 		case SHOW_ACTIVE:
-			return todos.filter(curTodo => !curTodo.completed);
+			return todos.filter(curTodo => !curTodo.get('completed'));
 		default:
 			return todos;
 	}
@@ -21,18 +21,19 @@ const getVisibleTodos = (todos, filter) => {
 let TodoList = ({ todos, onTodoClick }) => (
 	<ul>
 		{todos.map(todo =>
-				<Todo
-					key={todo.id}
-					{...todo}
-					onClick={() => onTodoClick(todo.id)}
-					/>
+			<Todo
+				key={todo.get('id')}
+				text={todo.get('text')}
+				completed={todo.get('completed')}
+				onClick={() => onTodoClick(todo.get('id'))}
+			/>
 		)}
 	</ul>
 );
 
 const mapStateToTodoListProps = (state) => {
 	return {
-		todos: getVisibleTodos(state.todos, state.visibilityFilter)
+		todos: getVisibleTodos(state.todos, state.visibilityFilter.get('filter'))
 	};
 };
 const mapDispatchToTodoListProps = (dispatch) => {
