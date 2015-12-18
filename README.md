@@ -21,9 +21,19 @@ npm install
 ### Running
 
 ```
-npm start
-open http://localhost:3000
+DEBUG=true npm start
 ```
+to start in debug mode (Redux DevTools enabled).
+
+or 
+
+```
+npm start
+```
+to start in production mode.
+
+Then open [http://localhost:3000](http://localhost:3000)
+
 
 ### Linting
 
