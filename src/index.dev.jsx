@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 
 import TodoApp from 'components/dumb/TodoApp/TodoApp';
 
-import configureStore from 'envSpecific/configureStore';
+import configureStore from 'store/configureStore.dev';
 import DevTools from 'utils/DevTools';
 
 const store = configureStore();

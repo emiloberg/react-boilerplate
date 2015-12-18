@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import Index from 'envSpecific/index';
+import Index from 'Index';
 
 ReactDOM.render(
 	<Index />,

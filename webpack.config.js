@@ -37,7 +37,7 @@ module.exports = {
 			reducers: 'src/reducers',
 			utils: 'src/utils',
 			store: 'src/store',
-			envSpecific: 'src/envSpecific/' + ENVIRONMENT
+			Index: 'src/index.' + ENVIRONMENT + '.jsx'
 		},
 		extensions: ['', '.js', '.json', '.jsx']
 	}
