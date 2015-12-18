@@ -1,6 +1,6 @@
 import React from 'react';
-import FilterLink from 'components/FilterLink';
-import { SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED } from 'state'
+import FilterLink from 'components/smart/FilterLink/FilterLink';
+import { SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED } from 'state';
 
 const Footer = () => {
 	return (

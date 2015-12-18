@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import Todo from 'components/TodoList/components/Todo';
+import Todo from 'components/dumb/Todo/Todo';
 import { toggleTodo } from 'actionCreators';
 import { SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED } from 'state';
 
