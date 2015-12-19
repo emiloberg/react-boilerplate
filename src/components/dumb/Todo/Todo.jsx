@@ -1,4 +1,5 @@
 import React from 'react';
+import functional from 'react-functional';
 
 const Todo = ({ onClick, completed, text }) => (
 	<li
@@ -9,4 +10,4 @@ const Todo = ({ onClick, completed, text }) => (
 	</li>
 );
 
-export default Todo;
+export default functional(Todo);

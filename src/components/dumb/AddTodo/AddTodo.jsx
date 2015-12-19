@@ -1,4 +1,5 @@
 import React from 'react';
+import functional from 'react-functional';
 
 const AddTodo = ({ onClick }) => {
 	let input;
@@ -19,4 +20,4 @@ const AddTodo = ({ onClick }) => {
 	);
 };
 
-export default AddTodo;
+export default functional(AddTodo);

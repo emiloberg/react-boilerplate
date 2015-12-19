@@ -1,4 +1,6 @@
 import React from 'react';
+import functional from 'react-functional';
+
 import FilterLink from 'components/smart/FilterLink/FilterLink';
 import { SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED } from 'state';
 
@@ -13,4 +15,4 @@ const Footer = () => {
 	);
 };
 
-export default Footer;
+export default functional(Footer);

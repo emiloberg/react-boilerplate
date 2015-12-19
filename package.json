@@ -48,6 +48,7 @@
     "immutable": "^3.7.6",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
+    "react-functional": "^1.1.1",
     "react-redux": "^4.0.0",
     "redux": "^3.0.4"
   }

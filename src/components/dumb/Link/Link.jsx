@@ -1,26 +1,18 @@
 import React from 'react';
+import functional from 'react-functional';
 
-class Link extends React.Component {
-	render() {
-		const { active, children, onClick } = this.props;
-		if (active) {
-			return (<span>{children}</span>);
-		}
-		return (
-			<a href="#" onClick={(e) => {
+const Link = ({ active, children, onClick }) => {
+	if (active) {
+		return (<span>{children}</span>);
+	}
+	return (
+		<a href="#" onClick={(e) => {
 			e.preventDefault();
 			onClick();
 		}}>
-				{children}
-			</a>
-		);
-	}
-}
-
-Link.propTypes = {
-	active: React.PropTypes.bool,
-	children: React.PropTypes.string,
-	onClick: React.PropTypes.func
+			{children}
+		</a>
+	);
 };
 
-export default Link;
+export default functional(Link);
