@@ -1,15 +1,27 @@
-var webpack = require('webpack');
-var WebpackDevServer = require('webpack-dev-server');
-var config = require('./webpack.config');
+'use strict';
+
+const webpack = require('webpack');
+const WebpackDevServer = require('webpack-dev-server');
+
+const PROD = JSON.parse(process.env.PROD || false);
+const ENVIRONMENT = PROD ? 'prod' : 'dev';
+
+let config;
+if (ENVIRONMENT === 'prod') {
+	config = require('./webpack.config.prod');
+} else {
+	config = require('./webpack.config.dev');
+}
 
 new WebpackDevServer(webpack(config), {
-  publicPath: config.output.publicPath,
-  hot: true,
-  historyApiFallback: true
+	publicPath: config.output.publicPath,
+	hot: true,
+	historyApiFallback: true
 }).listen(3000, '0.0.0.0', function (err, result) {
-  if (err) {
-    console.log(err);
-  }
+	if (err) {
+		console.log(err);
+	}
 
-  console.log('Listening at localhost:3000');
+	console.log('Starting in ' + ENVIRONMENT + ' mode');
+	console.log('Listening at localhost:3000');
 });

@@ -1,8 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
-
-const __DEV__ = JSON.parse(process.env.DEBUG || false);
-const ENVIRONMENT = __DEV__ ? 'dev' : 'prod';
+const autoprefixer = require('autoprefixer');
+const postcssNested = require('postcss-nested');
 
 module.exports = {
 	devtool: 'eval-source-map',
@@ -24,6 +23,9 @@ module.exports = {
 			test: /\.jsx?$/,
 			loaders: ['react-hot', 'babel-loader'],
 			include: path.join(__dirname, 'src')
+		}, {
+			test: /\.css$/,
+			loader: 'style!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader'
 		}]
 	},
 	resolve: {
@@ -37,8 +39,13 @@ module.exports = {
 			reducers: 'src/reducers',
 			utils: 'src/utils',
 			store: 'src/store',
-			Index: 'src/index.' + ENVIRONMENT + '.jsx'
+			style: 'src/style',
+			Index: 'src/index.dev.jsx'
 		},
 		extensions: ['', '.js', '.json', '.jsx']
-	}
+	},
+	postcss: [
+		postcssNested,
+		autoprefixer()
+	]
 };

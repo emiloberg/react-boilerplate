@@ -20,15 +20,21 @@ npm install
 
 ### Running
 
+#### Debug Mode
+* Redux DevTools enabled
+* Inline CSS (for hot loading)
+
+#### Start commands
+
 ```
-DEBUG=true npm start
+npm start
 ```
-to start in debug mode (Redux DevTools enabled).
+to start in debug mode 
 
 or 
 
 ```
-npm start
+PROD=true npm start
 ```
 to start in production mode.
 
@@ -60,6 +66,13 @@ export default functional(YourComponent);
 
 You can also use this wrapper to add lifecycle methods (such as `didComponentUpdate`), [see the documentation](https://www.npmjs.com/package/react-functional).
 
+### Styling
+
+Uses [CSS Modules](https://github.com/css-modules/css-modules) for modular and reusable CSS without conflicts or global scope.
+
+Uses [PostCSS](https://github.com/postcss/postcss) which can load plugins to transform the CSS. Currently installed plugins:
+
+* [Autoprefixer](https://github.com/postcss/autoprefixer) - Parse CSS and add vendor prefixes to rules by Can I Use. Autoprefixer uses [browserslist](https://github.com/ai/browserslist) which means that you can specify which browsers you want to support by editing the `browserslist` file in the root of the app. See [browserslist documentation](https://github.com/ai/browserslist#queries) for syntax.
 
 ### Linting
 
