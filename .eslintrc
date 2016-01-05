@@ -6,7 +6,8 @@
   },
   "env": {
     "browser": true,
-    "node": true
+    "node": true,
+    "mocha": true
   },
   "parser": "babel-eslint",
   "rules": {
@@ -23,6 +24,7 @@
     "react/react-in-jsx-scope": 2,
     "react/jsx-closing-bracket-location": 0,
     "react/jsx-indent-props": 0,
+    "react/jsx-boolean-value": 0,
     "comma-dangle": 0,
     "indent": 0
   },
