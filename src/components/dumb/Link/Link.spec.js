@@ -20,7 +20,6 @@ describe('Link', () => {
 		it('should print link text', () => {
 			expect(renderLinkComponent({ active: false })).toIncludeJSX('LinkText');
 		});
-
 	});
 
 	describe('Active', () => {

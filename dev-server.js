@@ -3,14 +3,14 @@
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 
-const PROD = JSON.parse(process.env.PROD || false);
-const ENVIRONMENT = PROD ? 'prod' : 'dev';
+const DEBUG = process.env.NODE_ENV === 'development';
+const TEST = process.env.NODE_ENV === 'test';
 
 let config;
-if (ENVIRONMENT === 'prod') {
-	config = require('./webpack.config.prod');
+if (DEBUG || TEST) {
+	config = require('./webpack/webpack.config.dev');
 } else {
-	config = require('./webpack.config.dev');
+	config = require('./webpack/webpack.config.prod');
 }
 
 new WebpackDevServer(webpack(config), {
@@ -22,6 +22,7 @@ new WebpackDevServer(webpack(config), {
 		console.log(err);
 	}
 
-	console.log('Starting in ' + ENVIRONMENT + ' mode');
+	const friendlyMode = (DEBUG || TEST) ? 'DEBUG' : 'PRODUCTION';
+	console.log('Starting in ' + friendlyMode + ' mode');
 	console.log('Listening at localhost:3000');
 });

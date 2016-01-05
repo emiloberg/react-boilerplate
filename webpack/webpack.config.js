@@ -1,7 +1,22 @@
+'use strict';
+
 const path = require('path');
 const webpack = require('webpack');
+//const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const postcssNested = require('postcss-nested');
+
+const loaders = {
+	jsxLoader: []
+};
+
+const DEBUG = process.env.NODE_ENV === 'development';
+const TEST = process.env.NODE_ENV === 'test';
+if (DEBUG) {
+	loaders.jsxLoader = ['react-hot', 'babel-loader'];
+} else {
+	loaders.jsxLoader = ['babel-loader'];
+}
 
 module.exports = {
 	devtool: 'eval-source-map',
@@ -11,30 +26,28 @@ module.exports = {
 		'./src/root'
 	],
 	output: {
-		path: path.join(__dirname, 'dist'),
+		path: path.join(__dirname, '../dist'),
 		filename: 'bundle.js',
 		publicPath: '/static/'
 	},
 	plugins: [
+		//new ExtractTextPlugin('style.css', { allChunks: true }),
 		new webpack.HotModuleReplacementPlugin()
 	],
 	module: {
-		preLoaders: [{
-			test: /\.js$/,
-			loader: 'eslint-loader',
-			exclude: /node_modules/
-		}],
 		loaders: [{
 			test: /\.jsx?$/,
-			loaders: ['react-hot', 'babel-loader'],
-			include: path.join(__dirname, 'src')
+			loaders: loaders.jsxLoader,
+			//include: path.join(__dirname, 'src'),
+			exclude: /node_modules/
 		}, {
 			test: /\.css$/,
-			loader: 'style!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader'
+			loader: 'style!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader',
+			exclude: /node_modules/
 		}]
 	},
 	resolve: {
-		root: path.resolve(__dirname),
+		root: path.resolve(__dirname, '..'),
 		alias: {
 			components: 'src/components',
 			actionCreators: 'src/actionCreators',
@@ -45,7 +58,7 @@ module.exports = {
 			utils: 'src/utils',
 			store: 'src/store',
 			style: 'src/style',
-			Index: 'src/index.dev.jsx'
+			Index: 'src/index.prod.jsx'
 		},
 		extensions: ['', '.js', '.json', '.jsx']
 	},

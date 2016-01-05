@@ -21,4 +21,3 @@ describe('CoolComponent', () => {
 		expect(actual).toIncludeJSX(expected);
 	});
 });
-

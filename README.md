@@ -24,21 +24,24 @@ npm install
 * Redux DevTools enabled
 * Inline CSS (for hot loading)
 
-#### Start commands
+#### CLI commands
 
 ```
+# Start in development mode (available at http://localhost:3000)
 npm start
-```
-to start in debug mode 
 
-or 
+# Start in production mode (available at http://localhost:3000)
+npm run start:prod
 
-```
-PROD=true npm start
-```
-to start in production mode.
+# Run ESLint
+npm run lint
 
-Then open [http://localhost:3000](http://localhost:3000)
+# Run tests & lint & create code coverage report
+npm test
+
+# Continiously run tests & lint & create code coverage report
+npm run test:watch
+```
 
 
 ### Docs
@@ -74,8 +77,8 @@ Uses [PostCSS](https://github.com/postcss/postcss) which can load plugins to tra
 
 * [Autoprefixer](https://github.com/postcss/autoprefixer) - Parse CSS and add vendor prefixes to rules by Can I Use. Autoprefixer uses [browserslist](https://github.com/ai/browserslist) which means that you can specify which browsers you want to support by editing the `browserslist` file in the root of the app. See [browserslist documentation](https://github.com/ai/browserslist#queries) for syntax.
 
-### Linting
+### Webpack
 
-```
-npm run lint
-```
+Depending on the environment variable `NODE_ENV` different Webpack configurations will be loaded. Valid values are `development` and `test`, if empty or something else, _production_ mode is assumed.
+
+All webpack configurations live in `/webpack/`. The individual `webpack.config.dev.js`, `webpack.config.test.js` and `webpack.config.prod.js` files add/deletes configurations from the inherited `webpack.config.js`.
