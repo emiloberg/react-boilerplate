@@ -1,19 +1,19 @@
-import { List, Map } from 'immutable';
+import { List/*, Map */ } from 'immutable';
 
 import todo from 'reducers/todo';
 import { ADD_TODO, TOGGLE_TODO } from 'actionTypes';
 
 const initState = new List([
-	new Map({
-		id: 'a',
-		text: 'Ongoing',
-		completed: false
-	}),
-	new Map({
-		id: 'b',
-		text: 'Completed',
-		completed: true
-	})
+	//new Map({
+	//	id: 'a',
+	//	text: 'Ongoing',
+	//	completed: false
+	//}),
+	//new Map({
+	//	id: 'b',
+	//	text: 'Completed',
+	//	completed: true
+	//})
 ]);
 
 export default (state = initState, action = {}) => {
