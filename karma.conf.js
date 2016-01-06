@@ -15,14 +15,14 @@ module.exports = function (config) {
 			'karma-sourcemap-loader',
 			'karma-webpack',
 			'karma-coverage',
-			'karma-mocha-reporter',
-			'karma-phantomjs-launcher'
+			'karma-phantomjs-launcher',
+			'karma-spec-reporter'
 		],
 		preprocessors: {
 			'tests.webpack.js': ['webpack', 'sourcemap'], //preprocess with webpack and our sourcemap loader
 			'!tests.webpack.js': 'coverage'
 		},
-		reporters: ['mocha', 'coverage'], //report results in this format
+		reporters: ['spec', 'coverage'], //report results in this format
 		webpack: require('./webpack/webpack.config.test'),
 		webpackServer: {
 			noInfo: true //please don't spam the console when running in karma!
