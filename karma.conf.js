@@ -19,8 +19,7 @@ module.exports = function (config) {
 			'karma-spec-reporter'
 		],
 		preprocessors: {
-			'tests.webpack.js': ['webpack', 'sourcemap'], //preprocess with webpack and our sourcemap loader
-			'!tests.webpack.js': 'coverage'
+			'tests.webpack.js': ['webpack', 'sourcemap'] //preprocess with webpack and our sourcemap loader
 		},
 		reporters: ['spec', 'coverage'], //report results in this format
 		webpack: require('./webpack/webpack.config.test'),

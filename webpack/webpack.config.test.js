@@ -9,15 +9,16 @@ delete config.plugins;
 const overrides = {
 	devtool: 'inline-source-map',
 	module: {
-		preLoaders: [{
-			test: /\.js$/,
+		preLoaders: [
+		{
+			test: /\.jsx?$/,
+			exclude: [/node_modules/, /\.spec\.jsx?/],
+			loader: 'isparta-instrumenter-loader'
+		},
+		{
+			test: /\.jsx?$/,
 			loader: 'eslint-loader',
 			exclude: /node_modules/
-		}],
-		postLoaders: [{ //delays coverage til after tests are run, fixing transpiled source coverage error
-			test: /\.jsx?$/,
-			exclude: /(test|node_modules)\//,
-			loader: 'istanbul-instrumenter'
 		}]
 	}
 };
