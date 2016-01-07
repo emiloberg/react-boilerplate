@@ -12,6 +12,10 @@ function renderLinkComponent({ active }) {
 }
 
 describe('Link', () => {
+	it('should have className "text"', () => {
+		expect(renderLinkComponent({ active: false }).props.className).toEqual('text');
+	});
+
 	describe('Inactive', () => {
 		it('should be a link', () => {
 			expect(renderLinkComponent({ active: false }).type).toEqual('a');
