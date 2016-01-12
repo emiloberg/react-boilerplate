@@ -27,8 +27,12 @@ module.exports = function (config) {
 			noInfo: true //please don't spam the console when running in karma!
 		},
 		coverageReporter: {
-			type: 'html', //produces a html document after code is run
-			dir: 'coverage/' //path to created html doc
+			dir: 'coverage/', //path to created html doc
+			reporters: [{
+				type: 'text-summary'
+			}, {
+				type: 'html'
+			}]
 		}
 	});
 };
