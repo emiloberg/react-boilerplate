@@ -1,6 +1,9 @@
 //import React from 'react';
 import { connect } from 'react-redux';
-import { addTodo, fetchRandomUser } from 'actionCreators';
+
+import { addTodo } from 'ducks/todo';
+import { fetchRandomUser } from 'ducks/fetchRandomUser';
+
 import AddTodo from 'components/dumb/AddTodo/AddTodo';
 
 const mapDispatchToProps = (dispatch) => {

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import { setVisibilityFilter } from 'actionCreators';
+import { setVisibilityFilter } from 'ducks/visibilityFilter';
 import Link from 'components/dumb/Link/Link';
 
 // mapStateToLinkProps gives the components props as second argument

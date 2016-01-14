@@ -21,6 +21,6 @@ describe('configureStore', () => {
 		});
 
 		it('should have visibility filter set to "show all"', () => {
-			expect(actual.visibilityFilter.get('filter')).toEqual('SHOW_ALL');
+			expect(actual.visibilityFilter.get('filter')).toEqual('react-boilerplate/visibility-filter/SHOW_ALL');
 		});
 });

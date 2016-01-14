@@ -9,7 +9,7 @@ const fetchMock = require('fetch-mock');
 //import chaiThings from 'chai-things';
 //chai.use(chaiThings);
 
-import { fetchRandomUser } from 'actionCreators';
+import { fetchRandomUser } from 'ducks/fetchRandomUser';
 
 describe('duck: fetchRandomUser', () => {
 	it('should get random user from remote service', (done) => {
@@ -31,14 +31,14 @@ describe('duck: fetchRandomUser', () => {
 
 		setTimeout(() => {
 			spyDispatch.should.have.callCount(3);
-			spyDispatch.should.have.been.calledWith(sinon.match({ type: 'REQUEST_RANDOM_USER' }));
-			spyDispatch.should.have.been.calledWith(sinon.match({ type: 'RECEIVED_RANDOM_USER' }));
+			spyDispatch.should.have.been.calledWith(sinon.match({ type: 'react-boilerplate/random-user/REQUEST_RANDOM_USER' }));
+			spyDispatch.should.have.been.calledWith(sinon.match({ type: 'react-boilerplate/random-user/RECEIVED_RANDOM_USER' }));
 			spyDispatch.should.have.been.calledWith(sinon.match({
-				type: 'ADD_TODO',
+				type: 'react-boilerplate/todo/ADD_TODO',
 				text: 'Lord Emil Oberg',
 				id: sinon.match.number
 			}));
-			spyDispatch.should.not.have.been.calledWith(sinon.match({ type: 'REQUEST_RANDOM_USER_ERROR' }));
+			spyDispatch.should.not.have.been.calledWith(sinon.match({ type: 'react-boilerplate/random-user/REQUEST_RANDOM_USER_ERROR' }));
 			fetchMock.called('https://randomuser.me/api/').should.equal(true);
 
 			spyDispatch.reset();
@@ -60,11 +60,11 @@ describe('duck: fetchRandomUser', () => {
 		setTimeout(() => {
 			spyDispatch.should.have.callCount(2);
 			spyDispatch.should.have.been.calledWith(sinon.match({
-				type: 'REQUEST_RANDOM_USER_ERROR',
+				type: 'react-boilerplate/random-user/REQUEST_RANDOM_USER_ERROR',
 				message: 'Error 400'
 			}));
-			spyDispatch.should.not.have.been.calledWith(sinon.match({ type: 'RECEIVED_RANDOM_USER' }));
-			spyDispatch.should.have.been.calledWith(sinon.match({ type: 'REQUEST_RANDOM_USER' }));
+			spyDispatch.should.not.have.been.calledWith(sinon.match({ type: 'react-boilerplate/random-user/RECEIVED_RANDOM_USER' }));
+			spyDispatch.should.have.been.calledWith(sinon.match({ type: 'react-boilerplate/random-user/REQUEST_RANDOM_USER' }));
 			fetchMock.called('https://randomuser.me/api/').should.equal(true);
 
 			spyDispatch.reset();

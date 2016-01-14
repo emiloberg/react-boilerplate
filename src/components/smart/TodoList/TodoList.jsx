@@ -2,8 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import Todo from 'components/dumb/Todo/Todo';
-import { toggleTodo } from 'actionCreators';
-import { SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED } from 'state';
+import { toggleTodo } from 'ducks/todo';
+import { SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED } from 'ducks/visibilityFilter';
 
 const getVisibleTodos = (todos, filter) => {
 	switch (filter) {

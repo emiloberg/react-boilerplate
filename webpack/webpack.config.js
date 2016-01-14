@@ -50,10 +50,6 @@ module.exports = {
 		root: path.resolve(__dirname, '..'),
 		alias: {
 			components: 'src/components',
-			actionCreators: 'src/actionCreators',
-			constants: 'src/constants',
-			actionTypes: 'src/constants/actionTypes',
-			state: 'src/constants/state',
 			reducers: 'src/reducers',
 			utils: 'src/utils',
 			store: 'src/store',

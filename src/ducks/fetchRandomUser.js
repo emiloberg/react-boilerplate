@@ -1,11 +1,11 @@
 require('isomorphic-fetch');
 
-import { addTodo } from 'actionCreators';
+import { addTodo } from 'ducks/todo';
 import { handleFetchErrors } from 'utils/fetchHelper';
 
-const REQUEST_RANDOM_USER = 'REQUEST_RANDOM_USER';
-const REQUEST_RANDOM_USER_ERROR = 'REQUEST_RANDOM_USER_ERROR';
-const RECEIVED_RANDOM_USER = 'RECEIVED_RANDOM_USER';
+const REQUEST_RANDOM_USER = 'react-boilerplate/random-user/REQUEST_RANDOM_USER';
+const REQUEST_RANDOM_USER_ERROR = 'react-boilerplate/random-user/REQUEST_RANDOM_USER_ERROR';
+const RECEIVED_RANDOM_USER = 'react-boilerplate/random-user/RECEIVED_RANDOM_USER';
 
 function requestRandomUser() {
 	return {
