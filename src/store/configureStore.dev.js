@@ -1,9 +1,10 @@
-import { createStore/* , applyMiddleware */, compose } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import rootReducer from 'reducers';
 import DevTools from 'utils/DevTools';
+import thunk from 'redux-thunk';
 
 const finalCreateStore = compose(
-	// applyMiddleware(d1, d2, d3),
+	applyMiddleware(thunk),
 	DevTools.instrument() // Include this middleware last of all middlewares.
 )(createStore);
 

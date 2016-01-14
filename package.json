@@ -35,6 +35,7 @@
     "babel-preset-es2015": "^6.0.15",
     "babel-preset-react": "^6.0.15",
     "babel-preset-stage-0": "^6.0.15",
+    "chai": "^3.4.1",
     "css-loader": "^0.23.0",
     "deep-freeze": "0.0.1",
     "deepmerge": "^0.2.10",
@@ -45,6 +46,7 @@
     "expect": "^1.13.4",
     "expect-jsx": "^2.2.1",
     "extract-text-webpack-plugin": "^0.9.1",
+    "fetch-mock": "^4.0.1",
     "ignore-styles": "^1.2.0",
     "isparta": "^4.0.0",
     "isparta-instrumenter-loader": "^1.0.0",
@@ -68,16 +70,19 @@
     "redux-devtools": "^3.0.0",
     "redux-devtools-dock-monitor": "^1.0.1",
     "redux-devtools-log-monitor": "^1.0.1",
+    "sinon": "^2.0.0-pre",
     "style-loader": "^0.13.0",
     "webpack": "^1.12.2",
     "webpack-dev-server": "^1.12.1"
   },
   "dependencies": {
     "immutable": "^3.7.6",
+    "isomorphic-fetch": "^2.2.0",
     "react": "^0.14.5",
     "react-dom": "^0.14.0",
     "react-functional": "^1.1.1",
     "react-redux": "^4.0.0",
-    "redux": "^3.0.4"
+    "redux": "^3.0.4",
+    "redux-thunk": "^1.0.3"
   }
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import functional from 'react-functional';
 
-const AddTodo = ({ onClick }) => {
+const AddTodo = ({ onAddClick, onRandomClick }) => {
 	let input;
 	return (
 		<div>
@@ -11,10 +11,17 @@ const AddTodo = ({ onClick }) => {
 
 			<button onClick={(e) => {
 				e.preventDefault();
-				onClick(input.value);
+				onAddClick(input.value);
 				input.value = '';
 			}}>
 				Add Todo
+			</button>
+			<button
+				onClick={(e) => {
+					e.preventDefault();
+					onRandomClick();
+				}}>
+				Async Add Random Todo from Network
 			</button>
 		</div>
 	);

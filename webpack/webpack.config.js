@@ -58,6 +58,7 @@ module.exports = {
 			utils: 'src/utils',
 			store: 'src/store',
 			style: 'src/style',
+			ducks: 'src/ducks',
 			Index: 'src/index.prod.jsx'
 		},
 		extensions: ['', '.js', '.json', '.jsx']
