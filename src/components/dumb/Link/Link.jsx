@@ -1,7 +1,7 @@
 import React from 'react';
 import functional from 'react-functional';
 
-import styles from './Link.css';
+import styles from './Link.scss';
 
 const Link = ({ active, children, onClick }) => {
 	if (active) {

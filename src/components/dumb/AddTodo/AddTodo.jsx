@@ -1,6 +1,8 @@
 import React from 'react';
 import functional from 'react-functional';
 
+import Button from 'react-toolbox/lib/button';
+
 const AddTodo = ({ onAddClick, onRandomClick }) => {
 	let input;
 	return (
@@ -16,13 +18,15 @@ const AddTodo = ({ onAddClick, onRandomClick }) => {
 			}}>
 				Add Todo
 			</button>
-			<button
+
+			<Button
+				primary={true}
 				onClick={(e) => {
 					e.preventDefault();
 					onRandomClick();
 				}}>
 				Async Add Random Todo from Network
-			</button>
+			</Button>
 		</div>
 	);
 };

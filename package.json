@@ -62,6 +62,7 @@
     "karma-spec-reporter": "0.0.23",
     "karma-webpack": "^1.7.0",
     "mocha": "^2.3.4",
+    "node-sass": "^3.4.2",
     "phantomjs": "^1.9.19",
     "postcss-loader": "^0.8.0",
     "postcss-nested": "^1.0.0",
@@ -70,18 +71,24 @@
     "redux-devtools": "^3.0.0",
     "redux-devtools-dock-monitor": "^1.0.1",
     "redux-devtools-log-monitor": "^1.0.1",
+    "sass-loader": "^3.1.2",
     "sinon": "^2.0.0-pre",
     "style-loader": "^0.13.0",
+    "toolbox-loader": "0.0.3",
     "webpack": "^1.12.2",
     "webpack-dev-server": "^1.12.1"
   },
   "dependencies": {
+    "classnames": "^2.2.3",
     "immutable": "^3.7.6",
     "isomorphic-fetch": "^2.2.0",
+    "normalize.css": "^3.0.3",
     "react": "^0.14.5",
+    "react-addons-css-transition-group": "^0.14.6",
     "react-dom": "^0.14.0",
     "react-functional": "^1.1.1",
     "react-redux": "^4.0.0",
+    "react-toolbox": "^0.14.0",
     "redux": "^3.0.4",
     "redux-thunk": "^1.0.3"
   }
