@@ -1,11 +1,10 @@
 require('isomorphic-fetch');
 
 import { addTodo } from 'ducks/todo';
+import { setSnackbar } from 'ducks/snackbar';
 import { handleFetchErrors } from 'utils/fetchHelper';
 
 const REQUEST_RANDOM_USER = 'react-boilerplate/random-user/REQUEST_RANDOM_USER';
-const REQUEST_RANDOM_USER_ERROR = 'react-boilerplate/random-user/REQUEST_RANDOM_USER_ERROR';
-const RECEIVED_RANDOM_USER = 'react-boilerplate/random-user/RECEIVED_RANDOM_USER';
 
 function requestRandomUser() {
 	return {
@@ -14,16 +13,17 @@ function requestRandomUser() {
 }
 
 function requestRandomUserError(err) {
-	return {
-		type: REQUEST_RANDOM_USER_ERROR,
-		message: err
-	};
+	return setSnackbar({
+		label: `Error: "${err}"`,
+		timeout: 5000
+	});
 }
 
-function receivedRandomUser() {
-	return {
-		type: RECEIVED_RANDOM_USER
-	};
+function receivedRandomUser(todoName) {
+	return setSnackbar({
+		label: `Added "${todoName}"`,
+		icon: 'add'
+	});
 }
 
 export function fetchRandomUser() {
@@ -35,8 +35,9 @@ export function fetchRandomUser() {
 		.then(res => res.json())
 		.then(json => {
 			const resName = json.results[0].user.name;
-			dispatch(receivedRandomUser());
-			dispatch(addTodo(`${resName.title} ${resName.first} ${resName.last}`));
+			const todoName = `${resName.title} ${resName.first} ${resName.last}`;
+			dispatch(receivedRandomUser(todoName));
+			dispatch(addTodo(todoName));
 		})
 		.catch(err => {
 			dispatch(requestRandomUserError(err.message));
