@@ -3,21 +3,33 @@ import functional from 'react-functional';
 
 import Button from 'react-toolbox/lib/button';
 
+import MdInput from 'components/dumb/mdInput/mdInput';
+
+import styles from './AddTodo.scss';
+
 const AddTodo = ({ onAddClick, onRandomClick }) => {
 	let input;
 	return (
 		<div>
-			{/* bind the input DOM element to this.newTodoInput
-			 so that we can grab a hold of its value further down */}
-			<input ref={ node => { input = node; } } />
+			<MdInput
+				className={ styles.todoInput }
+				ref={ node => { input = node; }}
+				label="What needs to be done?"
+				onEnterPress={(value) => {
+					onAddClick(value);
+				}}
+			/>
 
-			<button onClick={(e) => {
-				e.preventDefault();
-				onAddClick(input.value);
-				input.value = '';
-			}}>
-				Add Todo
-			</button>
+			<Button
+				label="Add Todo"
+				raised
+				primary
+				onClick={(e) => {
+					e.preventDefault();
+					onAddClick(input.state.inputValue);
+					input.setState({ inputValue: '' });
+				}}
+			/>
 
 			<Button
 				primary={true}
@@ -25,7 +37,7 @@ const AddTodo = ({ onAddClick, onRandomClick }) => {
 					e.preventDefault();
 					onRandomClick();
 				}}>
-				Async Add Random Todo from Network
+				Add Random
 			</Button>
 		</div>
 	);

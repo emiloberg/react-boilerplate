@@ -1,19 +1,19 @@
 import React from 'react';
 import functional from 'react-functional';
 
-import styles from './Link.scss';
+import { Button } from 'react-toolbox/lib/button';
 
 const Link = ({ active, children, onClick }) => {
-	if (active) {
-		return (<span>{children}</span>);
-	}
 	return (
-		<a className={ styles.text } href="#" onClick={(e) => {
-			e.preventDefault();
-			onClick();
-		}}>
+		<Button
+			disabled={active}
+			onClick={(e) => {
+				e.preventDefault();
+				onClick();
+			}}
+		>
 			{children}
-		</a>
+		</Button>
 	);
 };
 

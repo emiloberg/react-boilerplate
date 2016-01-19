@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { List } from 'react-toolbox/lib/list';
+
 import Todo from 'components/dumb/Todo/Todo';
 import { toggleTodo } from 'ducks/todo';
 import { SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED } from 'ducks/visibilityFilter';
@@ -19,7 +21,7 @@ const getVisibleTodos = (todos, filter) => {
 };
 
 let TodoList = ({ todos, onTodoClick }) => (
-	<ul>
+	<List>
 		{todos.map(todo =>
 			<Todo
 				key={todo.get('id')}
@@ -28,7 +30,7 @@ let TodoList = ({ todos, onTodoClick }) => (
 				onClick={() => onTodoClick(todo.get('id'))}
 			/>
 		)}
-	</ul>
+	</List>
 );
 
 const mapStateToTodoListProps = (state) => {
