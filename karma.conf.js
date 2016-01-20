@@ -22,7 +22,7 @@ module.exports = function (config) {
 			'tests.webpack.js': ['webpack', 'sourcemap'] //preprocess with webpack and our sourcemap loader
 		},
 		reporters: ['spec', 'coverage'], //report results in this format
-		webpack: require('./webpack/webpack.config.test'),
+		webpack: require('./webpack/webpack.config'),
 		webpackServer: {
 			noInfo: true //please don't spam the console when running in karma!
 		},

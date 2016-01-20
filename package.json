@@ -8,8 +8,8 @@
     "lint": "eslint src",
     "test": "NODE_ENV=test karma start",
     "test:watch": "NODE_ENV=test karma start --no-single-run",
-    "build": "NODE_ENV=production webpack --config webpack/webpack.config.prod.js",
-    "build:analyze": "NODE_ENV=production webpack --config webpack/webpack.config.prod.js --json > webpackStats.json && npm run analyze-build",
+    "build": "NODE_ENV=production webpack --config webpack/webpack.config.js",
+    "build:analyze": "NODE_ENV=production webpack --config webpack/webpack.config.js --json > webpackStats.json && npm run analyze-build",
     "analyze-build": "cat webpackStats.json | ./node_modules/webpack-bundle-size-analyzer/analyze-bundle-size"
   },
   "repository": {

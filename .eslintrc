@@ -9,6 +9,11 @@
     "node": true,
     "mocha": true
   },
+  "globals": {
+    "DEBUG": true,
+    "PRODUCTION": true,
+    "TEST": true
+  },
   "parser": "babel-eslint",
   "rules": {
     "strict": [2, "never"],
