@@ -5,6 +5,8 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const postcssNested = require('postcss-nested');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 /**
  * List of node_modules to parse for (S)CSS
@@ -19,6 +21,7 @@ const loaders = {
 
 const DEBUG = process.env.NODE_ENV === 'development';
 const TEST = process.env.NODE_ENV === 'test';
+const PRODUCTION = process.env.NODE_ENV === 'production';
 
 loaders.jsxLoader = DEBUG ? ['react-hot', 'babel-loader'] : ['babel-loader'];
 
@@ -30,26 +33,63 @@ loaders.jsxLoader = DEBUG ? ['react-hot', 'babel-loader'] : ['babel-loader'];
  */
 const localIdentName = TEST ? '[local]' : '[name]__[local]___[hash:base64:5]';
 
+const cssBundleFilename = PRODUCTION ? 'bundle.[contenthash].css' : 'bundle.css';
+const jsBundleFilename = PRODUCTION ? 'bundle.[hash].js' : 'bundle.js';
+
 const plugins = [
-	new ExtractTextPlugin('bundle.css', { allChunks: true })
+	new CleanWebpackPlugin(['dist'], {
+		root: path.join(__dirname, '..')
+	}),
+	new webpack.DefinePlugin({
+		DEBUG: JSON.stringify(DEBUG),
+		TEST: JSON.stringify(TEST),
+		PRODUCTION: JSON.stringify(PRODUCTION),
+		'process.env': {
+			NODE_ENV: JSON.stringify(process.env.NODE_ENV)
+		}
+	}),
+	new ExtractTextPlugin(cssBundleFilename, { allChunks: true })
 ];
 if (DEBUG) {
 	plugins.push(new webpack.HotModuleReplacementPlugin());
+} else if (PRODUCTION) {
+	plugins.push(new HtmlWebpackPlugin({
+		title: 'React Boilerplate',
+		filename: 'index.html',
+		template: 'index.prod.html'
+	}));
+	plugins.push(new webpack.optimize.DedupePlugin());
+	plugins.push(new webpack.optimize.UglifyJsPlugin({
+		comments: false
+	}));
+}
+
+const entry = {
+	bundle: ['./src/root']
+};
+if (DEBUG) {
+	entry.bundle.push('webpack-dev-server/client?http://localhost:3000');
+	entry.bundle.push('webpack/hot/only-dev-server');
+}
+
+const devtool = DEBUG || TEST ? 'eval-source-map' : 'source-map';
+
+const externals = {};
+if (PRODUCTION) {
+	externals.react = 'React';
+	externals.immutable = 'Immutable';
 }
 
 module.exports = {
-	devtool: 'eval-source-map',
-	entry: [
-		'webpack-dev-server/client?http://localhost:3000',
-		'webpack/hot/only-dev-server',
-		'./src/root'
-	],
+	devtool,
+	entry,
 	output: {
 		path: path.join(__dirname, '../dist'),
-		filename: 'bundle.js',
+		filename: jsBundleFilename,
 		publicPath: '/'
 	},
-	plugins: plugins,
+	plugins,
+	externals,
 	module: {
 		loaders: [{
 			test: /\.jsx?$/,
@@ -73,7 +113,8 @@ module.exports = {
 			store: 'src/store',
 			style: 'src/style',
 			ducks: 'src/ducks',
-			Index: 'src/index.prod.jsx'
+			Index: 'src/index.prod.jsx',
+			'react-dom': 'node_modules/react-dom/dist/react-dom.min'
 		},
 		extensions: ['', '.js', '.json', '.jsx', '.scss']
 	},
