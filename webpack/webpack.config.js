@@ -57,6 +57,24 @@ if (DEBUG) {
 jsxLoader.push('babel-loader');
 
 /**
+ * Loaders, SCSS.
+ */
+let scssLoader;
+let scssLoaderParts = [
+	'style',
+	'css-loader?sourceMap&modules&importLoaders=1&localIdentName=' + cssSelectorName + '',
+	'postcss-loader',
+	'sass?sourceMap',
+	'toolbox'
+];
+if (PRODUCTION) {
+	scssLoaderParts = scssLoaderParts.slice(1).join('!'); // Remove 'style'
+	scssLoader = ExtractTextPlugin.extract('style', scssLoaderParts);
+} else {
+	scssLoader = scssLoaderParts.join('!');
+}
+
+/**
  * Plugins
  */
 const plugins = [
@@ -69,12 +87,12 @@ const plugins = [
 		},
 		LANGUAGE: JSON.stringify(language)
 	}),
-	new ExtractTextPlugin(cssBundleFilename, { allChunks: true }),
 	new I18nPlugin(languageFile)
 ];
 if (DEBUG) {
 	plugins.push(new webpack.HotModuleReplacementPlugin());
 } else if (PRODUCTION) {
+	plugins.push(new ExtractTextPlugin(cssBundleFilename, { allChunks: true }));
 	plugins.push(new HtmlWebpackPlugin({
 		title: 'React Boilerplate',
 		filename: 'index.' + language + '.html',
@@ -158,7 +176,7 @@ module.exports = {
 			exclude: /node_modules/
 		}, {
 			test: /(\.scss|\.css)$/,
-			loader: ExtractTextPlugin.extract('style', 'css?sourceMap&modules&importLoaders=1&localIdentName=' + cssSelectorName + '!postcss-loader!sass?sourceMap!toolbox'),
+			loader: scssLoader,
 			exclude: new RegExp('node_modules\/(?!' + modulesParseCSS.join('|') + ')')
 		}]
 	},

@@ -49,7 +49,7 @@
     "eslint-plugin-react": "^3.11.3",
     "expect": "^1.13.4",
     "expect-jsx": "^2.2.1",
-    "extract-text-webpack-plugin": "^0.9.1",
+    "extract-text-webpack-plugin": "^1.0.1",
     "fetch-mock": "^4.0.1",
     "html-webpack-plugin": "^2.6.5",
     "i18n-webpack-plugin": "^0.2.7",
