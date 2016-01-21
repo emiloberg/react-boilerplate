@@ -6,11 +6,17 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const postcssNested = require('postcss-nested');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const I18nPlugin = require('i18n-webpack-plugin');
 
 const DEBUG = process.env.NODE_ENV === 'development';
 const TEST = process.env.NODE_ENV === 'test';
 const PRODUCTION = process.env.NODE_ENV === 'production';
+
+/**
+ * language file
+ */
+const language = process.env.BUILDLANG || 'en';
+const languageFile = require('../src/language/' + language + '.json');
 
 /**
  * CSS Selector Name
@@ -29,7 +35,7 @@ const cssSelectorName = TEST ? '[local]' : '[name]__[local]___[hash:base64:5]';
  * to bust caches.
  */
 const cssBundleFilename = PRODUCTION ? 'bundle.[contenthash].css' : 'bundle.css';
-const jsBundleFilename = PRODUCTION ? 'bundle.[hash].js' : 'bundle.js';
+const jsBundleFilename = PRODUCTION ? 'bundle.[hash].' + language + '.js' : 'bundle.js';
 
 
 /**
@@ -60,19 +66,18 @@ const plugins = [
 		PRODUCTION: JSON.stringify(PRODUCTION),
 		'process.env': {
 			NODE_ENV: JSON.stringify(process.env.NODE_ENV)
-		}
+		},
+		LANGUAGE: JSON.stringify(language)
 	}),
-	new ExtractTextPlugin(cssBundleFilename, { allChunks: true })
+	new ExtractTextPlugin(cssBundleFilename, { allChunks: true }),
+	new I18nPlugin(languageFile)
 ];
 if (DEBUG) {
 	plugins.push(new webpack.HotModuleReplacementPlugin());
 } else if (PRODUCTION) {
-	plugins.push(new CleanWebpackPlugin(['dist'], {
-		root: path.join(__dirname, '..')
-	}));
 	plugins.push(new HtmlWebpackPlugin({
 		title: 'React Boilerplate',
-		filename: 'index.html',
+		filename: 'index.' + language + '.html',
 		template: 'index.prod.html'
 	}));
 	plugins.push(new webpack.optimize.DedupePlugin());

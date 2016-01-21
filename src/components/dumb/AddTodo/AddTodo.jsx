@@ -14,14 +14,14 @@ const AddTodo = ({ onAddClick, onRandomClick }) => {
 			<MdInput
 				className={ styles.todoInput }
 				ref={ node => { input = node; }}
-				label="What needs to be done?"
+				label={__('What needs to be done?')}
 				onEnterPress={(value) => {
 					onAddClick(value);
 				}}
 			/>
 
 			<Button
-				label="Add Todo"
+				label={__('Add todo')}
 				raised
 				primary
 				onClick={(e) => {
@@ -37,7 +37,7 @@ const AddTodo = ({ onAddClick, onRandomClick }) => {
 					e.preventDefault();
 					onRandomClick();
 				}}>
-				Add Random
+				{__('Add Random')}
 			</Button>
 		</div>
 	);

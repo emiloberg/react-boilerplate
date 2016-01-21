@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { List } from 'react-toolbox/lib/list';
 
 import Todo from 'components/dumb/Todo/Todo';
+import TodoListFooter from 'components/dumb/TodoListFooter/TodoListFooter';
 import { toggleTodo } from 'ducks/todo';
 import { SHOW_ALL, SHOW_ACTIVE, SHOW_COMPLETED } from 'ducks/visibilityFilter';
 
@@ -21,16 +22,19 @@ const getVisibleTodos = (todos, filter) => {
 };
 
 let TodoList = ({ todos, onTodoClick }) => (
-	<List>
-		{todos.map(todo =>
-			<Todo
-				key={todo.get('id')}
-				text={todo.get('text')}
-				completed={todo.get('completed')}
-				onClick={() => onTodoClick(todo.get('id'))}
-			/>
-		)}
-	</List>
+	<div>
+		<List>
+			{todos.map(todo =>
+				<Todo
+					key={todo.get('id')}
+					text={todo.get('text')}
+					completed={todo.get('completed')}
+					onClick={() => onTodoClick(todo.get('id'))}
+				/>
+			)}
+		</List>
+		<TodoListFooter noOfTodos={ todos.count() } />
+	</div>
 );
 
 const mapStateToTodoListProps = (state) => {

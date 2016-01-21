@@ -21,7 +21,7 @@ function requestRandomUserError(err) {
 
 function receivedRandomUser(todoName) {
 	return setSnackbar({
-		label: `Added "${todoName}"`,
+		label: `${__('Added')} "${todoName}"`,
 		icon: 'add'
 	});
 }

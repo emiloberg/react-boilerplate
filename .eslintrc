@@ -12,7 +12,9 @@
   "globals": {
     "DEBUG": true,
     "PRODUCTION": true,
-    "TEST": true
+    "TEST": true,
+    "__": true,
+    "LANGUAGE": true
   },
   "parser": "babel-eslint",
   "rules": {

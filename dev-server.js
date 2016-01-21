@@ -17,7 +17,8 @@ new WebpackDevServer(webpack(config), {
 		timings: false,
 		chunks: false,
 		chunkModules: false,
-		children: false
+		children: false,
+		warnings: false
 	}
 }).listen(3000, '0.0.0.0', function (err, result) {
 	if (err) {

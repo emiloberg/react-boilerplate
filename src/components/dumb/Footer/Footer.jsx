@@ -11,10 +11,10 @@ import styles from './Footer.scss';
 const Footer = () => {
 	return (
 		<AppBar className={ styles.footer }>
-			Show:
-			{' '} <FilterLink filter={SHOW_ALL}>All</FilterLink>
-			{' '} <FilterLink filter={SHOW_ACTIVE}>Active</FilterLink>
-			{' '} <FilterLink filter={SHOW_COMPLETED}>Completed</FilterLink>
+			{__('Show')}:
+			{' '} <FilterLink filter={SHOW_ALL}>{__('All')}</FilterLink>
+			{' '} <FilterLink filter={SHOW_ACTIVE}>{__('Active')}</FilterLink>
+			{' '} <FilterLink filter={SHOW_COMPLETED}>{__('Completed')}</FilterLink>
 		</AppBar>
 	);
 };
