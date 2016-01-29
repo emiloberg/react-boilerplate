@@ -13,7 +13,7 @@ const initState = fromJS({
 export default function reducer(state = initState, action = {}) {
 	switch (action.type) {
 		case SET_VISIBILITY_FILTER:
-			return state.set('filter', action.filter);
+			return state.set('filter', action.payload.filter);
 		default:
 			return state;
 	}
@@ -22,6 +22,8 @@ export default function reducer(state = initState, action = {}) {
 export function setVisibilityFilter(filter) {
 	return {
 		type: SET_VISIBILITY_FILTER,
-		filter
+		payload: {
+			filter
+		}
 	};
 }

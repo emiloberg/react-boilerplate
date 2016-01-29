@@ -4,9 +4,11 @@ export const HIDE_SNACKBAR = 'react-boilerplate/snackbar/HIDE_SNACKBAR';
 export function setSnackbar({ label, icon, timeout }) {
 	return {
 		type: NOTIFY_SNACKBAR,
-		label,
-		icon,
-		timeout
+		payload: {
+			label,
+			icon,
+			timeout
+		}
 	};
 }
 
@@ -22,9 +24,9 @@ export default function reducer(state = initState, action) {
 		case NOTIFY_SNACKBAR:
 			return {
 				...state,
-				label: action.label,
-				icon: action.icon,
-				timeout: action.timeout,
+				label: action.payload.label,
+				icon: action.payload.icon,
+				timeout: action.payload.timeout,
 				active: true
 			};
 		case HIDE_SNACKBAR:

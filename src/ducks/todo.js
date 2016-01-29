@@ -9,13 +9,13 @@ export default function reducer(state = initState, action = {}) {
 	switch (action.type) {
 		case ADD_TODO:
 			return state.push(new Map({
-				id: action.id,
-				text: action.text,
+				id: action.payload.id,
+				text: action.payload.text,
 				completed: false
 			}));
 		case TOGGLE_TODO:
 			return state.map((curTodo) => {
-				if (curTodo.get('id') !== action.id) {
+				if (curTodo.get('id') !== action.payload.id) {
 					return curTodo;
 				}
 				return curTodo.set('completed', !curTodo.get('completed'));
@@ -33,14 +33,18 @@ export function addTodo(text, resetId) {
 
 	return {
 		type: ADD_TODO,
-		id: nextTodoId++,
-		text
+		payload: {
+			id: nextTodoId++,
+			text
+		}
 	};
 }
 
 export function toggleTodo(id) {
 	return {
 		type: TOGGLE_TODO,
-		id
+		payload: {
+			id
+		}
 	};
 }
